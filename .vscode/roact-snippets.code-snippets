@@ -1,0 +1,31 @@
+{
+	"Roact Element": {
+		"prefix": ["element"],
+		"description": "Create a Roact element with props and everything",
+		"body": [
+			"import Hooks from \"@rbxts/roact-hooks\";",
+			"import Roact from \"@rbxts/roact\";",
+			"",
+			"interface ${1:$TM_FILENAME_BASE}Props extends Roact.JsxInstanceProperties<Frame> {",
+			"",
+			"Event?: Roact.JsxInstanceEvents<Frame>;",
+			"Change?: Roact.JsxInstanceChangeEvents<Frame>;",
+			"}",
+			"",
+			"const ${1:$TM_FILENAME_BASE}: Hooks.FC<${1:$TM_FILENAME_BASE}Props> = (props, hooks) => {",
+			"const { } = hooks;",
+			"const { } = props;",
+			"",
+			"const spreadableProps = { ...props } as Partial<${1:$TM_FILENAME_BASE}Props>;",
+			"",
+			"return (",
+			"<frame {...spreadableProps}>",
+			"",
+			"</frame>",
+			");",
+			"};",
+			"",
+			"export default new Hooks(Roact)(${1:$TM_FILENAME_BASE});"
+		]
+	}
+}

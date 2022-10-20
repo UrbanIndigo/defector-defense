@@ -1,0 +1,33 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - prod
+
+jobs:
+    ci:
+        name: Upload Prod
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v1
+              with:
+                  submodules: true
+
+            - uses: Roblox/setup-foreman@v1
+              with:
+                  version: "^1.0.0"
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Report tool versions
+              run: rojo --version
+
+            - run: npm ci
+
+            - run: npm run compile
+
+            - name: Deploy
+              run: rojo upload --api_key $API_KEY --universe_id 3877613867 --asset_id 10710232924
+              env:
+                  API_KEY: ${{ secrets.API_KEY }}
