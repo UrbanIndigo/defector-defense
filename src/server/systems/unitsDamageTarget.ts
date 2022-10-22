@@ -40,7 +40,7 @@ const unitsDamageTarget = (world: World) => {
 				const health = world.get(unit.target, Health);
 
 				if (health && health.health > 0) {
-					const newHealth = health.health - gun.gunInfo.damage;
+					const newHealth = math.max(0, health.health - gun.gunInfo.damage);
 
 					if (newHealth <= 0) {
 						const special = world.get(id, SpecialAbility);
